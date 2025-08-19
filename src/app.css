@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optionally wrap custom classes */
+@layer utilities {
+  .text-darkone {
+    @apply text-gray-800;
+  }
+  .dark\:text-dark-darkone {
+    @apply dark:text-gray-100;
+  }
+}
