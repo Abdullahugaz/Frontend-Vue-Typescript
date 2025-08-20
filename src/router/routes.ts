@@ -1,16 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router'
-
-import HomeSection from '@/views/HomeView.vue'
 import LoginView from '@/pages/Auth/LoginView.vue'
 import RegisterView from '@/pages/Auth/RegisterView.vue'
-import dashboard from '@/pages/DashboardView.vue'
+import dashboard from '@/views/DashboardView.vue'
+import list from '@/pages/ListView.vue'
+import form from '@/pages/FormView.vue'
 
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeSection,
-  },
+ 
   {
     path: '/login',
     name: 'login',
@@ -22,10 +18,28 @@ const routes: RouteRecordRaw[] = [
     component: RegisterView,
   },
   {
+path: '/list',
+    name: 'list',
+    component: list,
+
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: form,
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     component: dashboard,
   },
+  // src/router/routes.ts
+{
+  path: '/oauth/callback',
+  name: 'oauth.callback',
+  component: () => import('@/pages/Auth/OAuthCallback.vue'),
+}
+
 ]
 
 export default routes

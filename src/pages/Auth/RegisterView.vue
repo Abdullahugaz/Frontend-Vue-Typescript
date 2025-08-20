@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-sm mx-auto mt-16">
+  <div class="max-w-sm mx-auto mt-16 mb-16 ml-16">
     <h1 class="text-2xl font-semibold mb-4">Register</h1>
 
     <!-- ✅ Success alert -->
@@ -9,13 +9,20 @@
       role="alert"
     >
       <p class="font-medium">Account created successfully.</p>
-      <p class="text-sm text-green-700">Redirecting…</p>
+      <p class="text-sm text-green-700">Redirecting… </p>
+    </div>
+    <div v-else class="mb-4 rounded-xl  bg-blue-700  px-[2]    text-center text-white">
+      <img class="mx-auto mb-4 h-16 w-16" src="@/assets/logo.png" alt="Logo">
+    </div>
+<div>
+      <p class=" font-bold text-blue-950 text-3xl ">Create your account</p>
+      <p class="text-xl font-light text-gray-400">Please fill in the details below.</p>
     </div>
 
     <form @submit.prevent="go" novalidate class="space-y-2">
       <!-- Username -->
-      <label class="block">
-        <span class="block text-sm font-medium text-gray-700">Username</span>
+      
+        
         <input
           v-model.trim="username"
           @input="touch.username = true"
@@ -25,34 +32,34 @@
           ]"
           autocomplete="username"
           required
-        />
-      </label>
+         placeholder="Username"
+         />
+     
       <p v-if="touch.username && usernameError" class="text-red-600 text-sm -mt-1">
         {{ usernameError }}
       </p>
 
       <!-- Email -->
-      <label class="block">
-        <span class="block text-sm font-medium text-gray-700">Email</span>
+      
         <input
           v-model.trim="email"
           @input="touch.email = true"
           type="email"
           :class="[
-            'mt-1 block w-full rounded border p-2 focus:outline-none focus:ring',
-            emailError ? 'border-red-500 focus:ring-red-200' : 'border-gray-300 focus:ring-purple-200'
+            'mt-1 block w-full rounded-lg border p-2 focus:outline-none focus:ring',
+            emailError ? 'border-gray-400 focus:ring-grey-700' : 'border-gray-900 focus:ring-purple-200'
           ]"
           autocomplete="email"
           required
+       placeholder="Email"
         />
-      </label>
+   
       <p v-if="touch.email && emailError" class="text-red-600 text-sm -mt-1">
         {{ emailError }}
       </p>
 
       <!-- Password -->
-      <label class="block">
-        <span class="block text-sm font-medium text-gray-700">Password</span>
+   
         <input
           v-model="password"
           @input="touch.password = true"
@@ -64,8 +71,9 @@
           ]"
           autocomplete="new-password"
           required
+          placeholder="Password"
         />
-      </label>
+  
       <p v-if="touch.password && passwordError" class="text-red-600 text-sm -mt-1">
         {{ passwordError }}
       </p>
@@ -89,17 +97,48 @@
 
       <p v-if="auth.error" class="text-red-600 mt-2">{{ auth.error }}</p>
     </form>
-
-    <p class="mt-3">
-      <router-link to="/login" class="text-white hover:underline rounded bg-purple-400">Back to login</router-link>
+    <p class="mt-3 text-center">
+      Already have an account?
+      <router-link to="/login" class="text-blue-700 hover:underline">Login here</router-link>
     </p>
-  </div>
+    </div>
+    <div class="ml-[20rem] mt-20 flex  gap-9 ">
+      <span class="text-gray-500">Powered by</span>
+    <img src="@/assets/logo.png" alt="">
+    
+    
+    
+    </div>
+<!-- put this block under your <form> in Register/Login -->
+<!-- <div class="mt-4 space-y-2">
+  <button
+    type="button"
+    @click="oauth('google')"
+    class="w-full rounded border px-4 py-2 hover:bg-gray-50"
+  >Continue with Google</button>
+
+  <button
+    type="button"
+    @click="oauth('github')"
+    class="w-full rounded border px-4 py-2 hover:bg-gray-50"
+  >Continue with GitHub</button>
+
+  <button
+    type="button"
+    @click="oauth('facebook')"
+    class="w-full rounded border px-4 py-2 hover:bg-gray-50"
+  >Continue with Facebook</button>
+</div> -->
+
+
+  
 </template>
 
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -161,4 +200,11 @@ async function go() {
     success.value = false
   }
 }
+
+const API = process.env.VUE_APP_API_URL || 'http://localhost:2000';
+function oauth(provider: 'google' | 'github' | 'facebook') {
+  // This hits your Nest endpoints below (they will redirect to the provider)
+  window.location.href = `${API}/auth/${provider}`;
+}
+
 </script>

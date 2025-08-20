@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-3xl mx-auto mt-10">
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-semibold">Customers</h1>
+      <h1 class="text-2xl font-semibold">Users</h1>
       <router-link to="/customers/new" class="bg-black text-white px-3 py-2 rounded">New</router-link>
     </div>
     <ul v-if="items.length">
@@ -22,7 +22,7 @@ type Customer = { id: number; name: string; email: string; phone?: string };
 const items = ref<Customer[]>([]);
 
 onMounted(async () => {
-  const { data } = await http.get('/customers');
+  const { data } = await http.get('/users');
   items.value = data;
 });
 </script>

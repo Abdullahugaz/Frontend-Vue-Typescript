@@ -100,7 +100,7 @@ export default {
 },
 
      goToDashboard() {
-      this.$router.push({ name: 'app.dashboard' })
+      this.$router.push({ name: 'dashboard' })
     }
   },
 
