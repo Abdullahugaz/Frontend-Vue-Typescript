@@ -1,45 +1,34 @@
 <template>
-  <body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+   <div class="flex h-full gap-5 justify-between z-[10]" >
+    <AppSidebar @toggleSidebar="toggleSidebar" :open="open"/>
+  <TopBar @toggleSidebar="toggleSidebar" :open="open"/>
 
-  <div class="flex h-screen text-gray-800 dark:text-black">
-    <!-- Sidebar -->
-    <AppSidebar :is-collapsed="isCollapsed" @toggle="toggleSidebar" />
-
-    <!-- Main container -->
-    <div class="flex flex-col flex-1">
-      <!-- Topbar -->
-      <AppTopbar :is-collapsed="isCollapsed" />
-
-      <!-- Main content -->
-      <main
-        :class="[
-          'transition-all duration-300 flex-1 overflow-auto bg-gray-50 p-6',
-          isCollapsed ? 'ml-20' : 'ml-[17.5rem]',
-          'pt-16' // reserve space if Topbar is fixed height
-        ]"
-      >
-        <router-view />
-      </main>
-    </div>
+ 
+    <router-view
+      class="flex-1  mt-28 ml-3 lg:ml-[320px] md:ml-[320px] mx-2 lg:mr-[100px] md:mr-[50px] mr-[10px] "
+    ></router-view>
   </div>
-  </body>
 </template>
 
-<script>
-import AppSidebar from './AppSidebar.vue'
-import AppTopbar from './AppTopbar.vue'
+<script lang="ts">
+import { defineComponent } from "vue";
+import TopBar from "./TopBar.vue";
+import AppSidebar from "./AppSidebar.vue";
 
-export default {
-  components: { AppSidebar, AppTopbar },
-  data() {
-    return {
-      isCollapsed: false
-    }
-  },
-  methods: {
-    toggleSidebar() {
-      this.isCollapsed = !this.isCollapsed
-    }
+export default defineComponent({
+  name: "IndexLayout",
+  components: { TopBar, AppSidebar },
+
+data() {
+  return {
+    open: false,
+  };
+},
+methods: {
+  toggleSidebar() {
+    this.open = !this.open;
   }
-}
+}});
 </script>
+
+<style></style>

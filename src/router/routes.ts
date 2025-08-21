@@ -4,6 +4,8 @@ import RegisterView from '@/pages/Auth/RegisterView.vue'
 import dashboard from '@/views/DashboardView.vue'
 import list from '@/pages/ListView.vue'
 import form from '@/pages/FormView.vue'
+import layouts from '@/layouts/IndexLayout.vue'
+
 
 const routes: RouteRecordRaw[] = [
  
@@ -18,6 +20,19 @@ const routes: RouteRecordRaw[] = [
     component: RegisterView,
   },
   {
+  path: '/layouts',
+  name: 'layouts',
+  component: layouts,
+  children: [
+    {
+      
+    path: '/dashboard',
+    name: 'dashboard',
+    component: dashboard,
+  },
+  ],
+  },
+  {
 path: '/list',
     name: 'list',
     component: list,
@@ -27,12 +42,9 @@ path: '/list',
     path: '/form',
     name: 'form',
     component: form,
+    
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: dashboard,
-  },
+  
   // src/router/routes.ts
 {
   path: '/oauth/callback',

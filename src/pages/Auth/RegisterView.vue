@@ -1,6 +1,31 @@
 <template>
-  <div class="max-w-sm mx-auto mt-16 mb-16 ml-16">
-    <h1 class="text-2xl font-semibold mb-4">Register</h1>
+   <div class="flex min-h-screen justify-center bg-white ">
+  <div class="flex min-h-screen w-1/2 rounded-tr-full  bg-blue-950 gap-9 items-center justify-center   md:flex">
+  <div class>
+      <span class="text-white text-6xl font-bold mt-16">Let's Setup </span> <br>
+      <span class="text-white text-5xl mt-10 font-semibold">Your Operating</span> <br>
+      <span class="text-white text-4xl mt-10 font-medium">Agreement</span>
+      </div>
+    </div>
+ 
+ <div class="flex w-1/2 flex-col items-center justify-center p-8  dark:bg-gray-800 mt-17">
+ 
+ <div class="flex items-center mb-4 gap-1">
+ 
+ <div class="w-[10px] h-[10px] bg-blue-950 rounded-full"></div>
+ <div class="w-[150px]    border-[1px] border-gray-400"></div>
+ 
+ <div class="w-[10px] h-[10px] bg-blue-950 rounded-full"></div>
+ <div class="w-[150px]    border-[1px] border-gray-400"></div>
+ 
+ <div class="w-[10px] h-[10px] bg-blue-950 rounded-full"></div>
+ <div class="w-[150px]    border-[1px] border-gray-400"></div>
+
+ <div class="w-[10px] h-[10px] bg-blue-950 rounded-full"></div>
+ <div class="w-[150px]    border-[1px] border-gray-400"></div>
+ </div>
+
+    <h1 class="text-2xl font-semibold mt-16">Let's Get Started</h1>
 
     <!-- ✅ Success alert -->
     <div
@@ -11,18 +36,17 @@
       <p class="font-medium">Account created successfully.</p>
       <p class="text-sm text-green-700">Redirecting… </p>
     </div>
-    <div v-else class="mb-4 rounded-xl  bg-blue-700  px-[2]    text-center text-white">
-      <img class="mx-auto mb-4 h-16 w-16" src="@/assets/logo.png" alt="Logo">
-    </div>
+   
 <div>
-      <p class=" font-bold text-blue-950 text-3xl ">Create your account</p>
-      <p class="text-xl font-light text-gray-400">Please fill in the details below.</p>
+      <!-- <p class=" font-bold text-blue-950 text-3xl mt-4">Create your account</p> -->
+     
     </div>
 
-    <form @submit.prevent="go" novalidate class="space-y-2">
+    <form @submit.prevent="go" novalidate class="w-full max-w-md space-y-4 dark:text-white mt-8">
       <!-- Username -->
       
-        
+       <label class="block">
+        <span class="block text-sm font-medium ">Username</span>
         <input
           v-model.trim="username"
           @input="touch.username = true"
@@ -38,16 +62,17 @@
       <p v-if="touch.username && usernameError" class="text-red-600 text-sm -mt-1">
         {{ usernameError }}
       </p>
-
+</label>
       <!-- Email -->
-      
+      <label class="block">
+        <span class="block text-sm font-medium">Email</span>
         <input
           v-model.trim="email"
           @input="touch.email = true"
           type="email"
           :class="[
             'mt-1 block w-full rounded-lg border p-2 focus:outline-none focus:ring',
-            emailError ? 'border-gray-400 focus:ring-grey-700' : 'border-gray-900 focus:ring-purple-200'
+            emailError ? 'border-red-500 focus:ring-red-200' : 'border-gray-300 focus:ring-purple-200' 
           ]"
           autocomplete="email"
           required
@@ -57,9 +82,10 @@
       <p v-if="touch.email && emailError" class="text-red-600 text-sm -mt-1">
         {{ emailError }}
       </p>
-
+</label>
       <!-- Password -->
-   
+   <label class="block">
+        <span class="block text-sm font-medium">Password</span>
         <input
           v-model="password"
           @input="touch.password = true"
@@ -77,10 +103,10 @@
       <p v-if="touch.password && passwordError" class="text-red-600 text-sm -mt-1">
         {{ passwordError }}
       </p>
-
+</label>
       <button
         :disabled="auth.loading || !formValid || success"
-        class="mt-2 inline-flex w-full items-center justify-center rounded bg-blue-700 hover:bg-blue-400 px-4 py-2 font-medium text-white transition disabled:opacity-50"
+        class="mt-2 inline-flex w-full items-center justify-center rounded bg-blue-950 hover:bg-blue-900 px-4 py-2 font-medium text-white transition disabled:opacity-50"
       >
         <svg
           v-if="auth.loading"
@@ -99,16 +125,11 @@
     </form>
     <p class="mt-3 text-center">
       Already have an account?
-      <router-link to="/login" class="text-blue-700 hover:underline">Login here</router-link>
+      <router-link to="/login" class="text-blue-950 hover:underline">Login here</router-link>
     </p>
     </div>
-    <div class="ml-[20rem] mt-20 flex  gap-9 ">
-      <span class="text-gray-500">Powered by</span>
-    <img src="@/assets/logo.png" alt="">
-    
-    
-    
     </div>
+    
 <!-- put this block under your <form> in Register/Login -->
 <!-- <div class="mt-4 space-y-2">
   <button
@@ -138,6 +159,9 @@
 import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+
+
+
 
 
 const auth = useAuthStore()
@@ -194,7 +218,7 @@ async function go() {
     // username.value = ''; email.value = ''; password.value = ''
 
     // Redirect after a small delay so the user sees the success alert
-    setTimeout(() => router.push('/users'), 1200)
+    setTimeout(() => router.push('/dashboard'), 1200)
   } catch {
     // auth.error already set by store; keep success=false
     success.value = false
