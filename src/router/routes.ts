@@ -5,6 +5,9 @@ import dashboard from '@/views/DashboardView.vue'
 import list from '@/pages/ListView.vue'
 import form from '@/pages/FormView.vue'
 import layouts from '@/layouts/IndexLayout.vue'
+import NotFound from '@/views/NotFound.vue'
+import FormCreate from '@/pages/Customers/FormCreate.vue'
+
 
 
 const routes: RouteRecordRaw[] = [
@@ -24,13 +27,24 @@ const routes: RouteRecordRaw[] = [
   name: 'layouts',
   component: layouts,
   children: [
-    {
-      
-    path: '/dashboard',
+  {
+    path: 'dashboard', // relative path
     name: 'dashboard',
     component: dashboard,
   },
-  ],
+  {
+    path: 'NotFound',
+    name: 'NotFound',
+    component: NotFound,
+  },
+  {
+    path: 'FormCreate',
+    name: 'FormCreate',
+    component: FormCreate,
+
+  },
+
+],
   },
   {
 path: '/list',
@@ -44,6 +58,8 @@ path: '/list',
     component: form,
     
   },
+  
+  
   
   // src/router/routes.ts
 {

@@ -1,5 +1,5 @@
 <template>
-   <div class="flex h-full gap-5 justify-between z-[10]" >
+   <div class="flex h-full gap-5 justify-between bg-gray-300 w-full z-[10]" >
     <AppSidebar @toggleSidebar="toggleSidebar" :open="open"/>
   <TopBar @toggleSidebar="toggleSidebar" :open="open"/>
 

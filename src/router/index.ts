@@ -8,23 +8,23 @@ const router = createRouter({
   scrollBehavior: () => ({ top: 0 }),
 })
 
-// router.beforeEach((to) => {
-//   const isAuthed = !!localStorage.getItem('token')
+router.beforeEach((to) => {
+  const isAuthed = !!localStorage.getItem('token')
 
-//   // Not authed & going to a protected page -> go login (once)
-//   if (to.meta?.requiresAuth && !isAuthed) {
-//     if (to.name !== 'login') {
-//       return { name: 'login', query: { redirect: to.fullPath } }
-//     }
-//     return true // already at login, allow
-//   }
+  // Not authed & going to a protected page -> go login (once)
+  if (to.meta?.requiresAuth && !isAuthed) {
+    if (to.name !== 'login') {
+      return { name: 'login', query: { redirect: to.fullPath } }
+    }
+    return true // already at login, allow
+  }
 
-//   // Authed & trying to visit auth pages -> send to dashboard
-//   if (isAuthed && (to.name === 'login' || to.name === 'register')) {
-//     return { name: 'dashboard' }
-//   }
+  // Authed & trying to visit auth pages -> send to dashboard
+  if (isAuthed && (to.name === 'login' || to.name === 'register')) {
+    return { name: 'dashboard' }
+  }
 
-//   return true
-// })
+  return true
+})
 
 export default router

@@ -17,6 +17,9 @@
 import { onMounted, ref } from 'vue';
 import { http } from '@/axios/api';
 
+
+
+
 type Customer = { id: number; name: string; email: string; phone?: string };
 
 const items = ref<Customer[]>([]);
