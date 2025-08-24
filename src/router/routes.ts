@@ -10,8 +10,13 @@ import FormCreate from '@/pages/Customers/FormCreate.vue'
 
 
 
-const routes: RouteRecordRaw[] = [
  
+const routes: RouteRecordRaw[] = [
+  // Redirect root to login
+  {
+    path: '/',
+    redirect: '/login',
+  },
   {
     path: '/login',
     name: 'login',
@@ -23,51 +28,48 @@ const routes: RouteRecordRaw[] = [
     component: RegisterView,
   },
   {
-  path: '/layouts',
-  name: 'layouts',
-  component: layouts,
-  children: [
-  {
-    path: 'dashboard', // relative path
-    name: 'dashboard',
-    component: dashboard,
+    path: '/layouts',
+    name: 'layouts',
+    component: layouts,
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: dashboard,
+      },
+      {
+        path: 'NotFound',
+        name: 'NotFound',
+        component: NotFound,
+      },
+      {
+        path: 'FormCreate',
+        name: 'FormCreate',
+        component: FormCreate,
+      },
+    ],
   },
   {
-    path: 'NotFound',
-    name: 'NotFound',
-    component: NotFound,
-  },
-  {
-    path: 'FormCreate',
-    name: 'FormCreate',
-    component: FormCreate,
-
-  },
-
-],
-  },
-  {
-path: '/list',
+    path: '/list',
     name: 'list',
     component: list,
-
   },
   {
     path: '/form',
     name: 'form',
     component: form,
-    
   },
-  
-  
-  
-  // src/router/routes.ts
-{
-  path: '/oauth/callback',
-  name: 'oauth.callback',
-  component: () => import('@/pages/Auth/OAuthCallback.vue'),
-}
+  {
+    path: '/oauth/callback',
+    name: 'oauth.callback',
+    component: () => import('@/pages/Auth/OAuthCallback.vue'),
+  },
+  // Catch-all for 404s
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFound,
+  },
+];
 
-]
-
-export default routes
+export default routes;

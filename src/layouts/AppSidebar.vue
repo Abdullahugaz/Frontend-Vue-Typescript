@@ -1,29 +1,34 @@
 <template>
 
-<div class="flex  min-h-screen bg-white shadow-sm dark:bg-blue-950 dark:text-white justify-cente w-[270px] mt-[60px]  fixed  flex-col">
-
-     <router-link
-        class="text-blue-600 mt-[60px] bg-white w-56 h-10 justify items-center text-center p-2 text-2xl font-bold rounded ml-3 "
+<div class="flex  min-h-screen bg-white shadow-sm dark:bg-blue-950 dark:text-white justify-cente w-[270px] mt-[60px]  fixed  ">
+<div class="ml-7 flex flex-col">
+        <router-link
+        class="text-blue-600 mt-[60px] bg-white w-56 h-10  p-2 text-2xl font-bold rounded  "
         :to="{ name: 'dashboard' }"
         >Dashboard</router-link>
-          <router-link
-        class="text-blue-600 mt-[20px] bg-white w-56 h-10 justify items-center text-center p-2 text-2xl font-bold rounded ml-3 "
+        <router-link
+        class="text-blue-600 mt-[20px] bg-white w-56 h-10  p-2 text-2xl font-bold rounded  "
         :to="{ name: 'list' }"
-        >Products</router-link>
-          <router-link
-        class="text-blue-600 mt-[20px] bg-white w-56 h-10 justify items-center text-center p-2 text-2xl font-bold rounded ml-3 "
+        >Users</router-link>
+        <router-link
+        class="text-blue-600 mt-[20px] bg-white w-56 h-10   p-2 text-2xl font-bold rounded  "
         :to="{ name: 'NotFound' }"
-        >Sales</router-link>
-          <router-link
-        class="text-blue-600 mt-[20px] bg-white w-56 h-10 justify items-center text-center p-2 text-2xl font-bold rounded ml-3 "
+        >Customers</router-link>
+        <router-link
+        class="text-blue-600 mt-[20px] bg-white w-56 h-10  p-2 text-2xl font-bold rounded  "
         :to="{ name: 'FormCreate' }"
-        >Form</router-link>
+        >Products</router-link>
+
+        <router-link
+        class="text-blue-600 mt-[20px] bg-white w-56 h-10   p-2 text-2xl font-bold rounded "
+        :to="{ name: 'FormCreate' }"
+        >Sales</router-link>
      
 
-   
-<button class="bg-white text-red-700 mt-auto">LogOut
-</button>
+   </div>
+
 </div>
+
 <slot></slot>
 
 </template>
